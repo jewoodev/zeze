@@ -9,5 +9,7 @@ class Flight(models.Model):
     terminal = models.CharField(max_length=5)
     gate = models.CharField(max_length=10)
     date = models.DateField()
+    def __str__(self):
+        return str(self.specific_id)
 
 

@@ -28,7 +28,7 @@
                             {% for flight in flights %}
                                 <tr>
                                     <td>{{ flight.date }}</td>
-                                    <td>{{ flight.time }}</td>
+                                    <td>{{ flight.departure_time }}</td>
                                     <td>{{ flight.destination }}</td>
                                     <td>{{ flight.airline }}</td>
                                     <td>{{ flight.flight_number }}</td>
@@ -44,4 +44,16 @@
             </div>
         </div>
     </div>
+<form id="searchForm" method="get" action="{% url 'result_flight_list' %}">
+    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+</form>
+{% endblock %}
+{% block script %}
+<script type='text/javascript'>
+const btn_search = document.getElementById("btn_search");
+btn_search.addEventListener('click', function() {
+    document.getElementById('kw').value = document.getElementById('search_kw').value;
+    document.getElementById('searchForm').submit();
+});
+</script>
 {% endblock %}

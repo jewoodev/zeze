@@ -5,10 +5,15 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="input-group">
-                    <input type="text" name="kw" id="search_kw" class="form-control" value="{{ kw }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="btn_search">찾기</button>
-                    </div>
+                    <form id="searchForm" method="get" action="{% url 'result_flight_list' %}">
+                        <div class="input-group">
+                            <input type="text" name="q" id="search_kw" class="form-control" value="{{ kw }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit" id="btn_search">찾기</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="flights" name="flights" value="{{ flights }}">
+                    </form>
                 </div>
             </form>
         </div>
@@ -31,7 +36,7 @@
                             {% for flight in flights %}
                                 <tr>
                                     <td>{{ flight.date }}</td>
-                                    <td>{{ flight.time }}</td>
+                                    <td>{{ flight.departure_time }}</td>
                                     <td>{{ flight.destination }}</td>
                                     <td>{{ flight.airline }}</td>
                                     <td>{{ flight.flight_number }}</td>
