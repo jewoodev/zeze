@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from django.db.models import Q
-from .models import Flight
+from .models import Flight#, Data
 from rest_framework.views import APIView
-from .serializers import FlightSerializer
+from .serializers import FlightSerializer#, DataSerializer
 
 class FlightListAPI(APIView):
     def get(self, request):
@@ -11,6 +11,14 @@ class FlightListAPI(APIView):
         print(queryset)
         serializer = FlightSerializer(queryset, many=True)
         return Response(serializer.data)
+
+# class DataListAPI(APIView):
+#     def get(self, request):
+#         queryset = Data.objects.all()
+#         print(queryset)
+#         serializer = DataSerializer(queryset, many=True)
+#         return Response(serializer.data)
+
 def search_flights(request):
     query = request.GET.get('q')
     if query:
