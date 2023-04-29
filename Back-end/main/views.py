@@ -28,7 +28,7 @@ def search_flights(request):
     context = {
         'flights': flights,
     }
-    return render(request, 'main/../templates/main/search.html', context)
+    return render(request, 'main/search.html', context)
 
 
 def result_flight_list(request):
@@ -41,4 +41,4 @@ def result_flight_list(request):
             Q(airline__icontains=kw) |          # 항공사 검색
             Q(flight_number__icontains=kw)      # 항공편 검색
         )
-    return render(request, 'main/../templates/main/result_flight_list.html', {'flights': flights, 'kw': kw})
+    return render(request, 'main/result_flight_list.html', {'flights': flights, 'kw': kw})
